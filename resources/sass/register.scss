@@ -1,0 +1,54 @@
+.register {
+	width: 800px;
+	padding: 30px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.register_field {
+    align-items: center;
+	padding: 20px 0px;	
+	position: relative;	
+}
+
+
+.register_input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 170px;
+	transition: .2s;
+    color: $contrastColorLight;
+}
+
+.register_input:active,
+.register_input:focus,
+.register_input:hover {
+	outline: none;
+	border-bottom-color: $contrastColorRed;
+}
+
+.register_submit {
+	background: #fff;
+	font-size: 14px;
+	padding: 8px 10px;
+	border-radius: 15px;
+    border: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	width: 200px;
+	color: $contrastColorLight;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.button_icon {
+	font-size: 24px;
+	margin-left: auto;
+	color: $contrastColorLight;
+}

@@ -1,0 +1,58 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+// colors & shadows
+$bgMain: #e0e0e0;
+$bgWindow: #ededed;
+$contrastColorDark: #004A59;
+$contrastColorMedium: #027184;
+$contrastColorLight: #0193A5;
+$contrastColorRed: #c73618;
+
+$shadow: 20px 20px 60px #b6b6b6,
+        -20px -20px 60px #ffffff;
+
+$bgThemeGradient: linear-gradient(140deg, rgba(0,74,89,1) 0%, rgba(2,113,132,1) 35%, rgba(199,54,24,1) 100%);
+
+// Typography
+$boldFont: 'Russo One', sans-serif;
+$mainFont: 'Oswald', sans-serif;
+
+.dark:root {
+    --app-bg: #101827;
+    --sidebar: rgba(21, 30, 47,1);
+    --sidebar-main-color: #fff;
+    --table-border: #1a2131;
+    --table-header: #1a2131;
+    --app-content-main-color: #fff;
+    --sidebar-link: #fff;
+    --sidebar-active-link: #1d283c;
+    --sidebar-hover-link: #1a2539;
+    --action-color: #2869ff;
+    --action-color-hover: #6291fd;
+    --app-content-secondary-color: #1d283c;
+    --filter-reset: #2c394f;
+    --filter-shadow: rgba(16, 24, 39, 0.8) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  
+  :root {
+    --app-bg: #fff;
+    --sidebar: #f3f6fd;
+    --app-content-secondary-color: #f3f6fd;
+    --app-content-main-color: #1f1c2e;
+    --sidebar-link: #1f1c2e;
+    --action-color: #027184;
+    --action-color-hover: #0193A5;
+    --sidebar-hover-link: rgba(195, 207, 244, 0.5);
+    --sidebar-active-link: rgba(195, 207, 244, 1);
+    --sidebar-main-color: #1f1c2e;
+    --filter-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  
+  $font-small: 14px;
+  $font-medium: 16px;
+  $font-large: 24px;

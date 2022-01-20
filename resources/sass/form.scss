@@ -1,0 +1,80 @@
+form {
+    margin-top: 40px;
+}
+
+.form_group {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px 0 0;
+    width: 200px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.form_field {
+    padding-right: 15px;
+    position: relative;
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid var(--action-color-hover);
+    outline: 0;
+    font-size: 14px;
+    color: var(--action-color-hover);
+    padding-left: 25px;
+    padding-bottom: 5px;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: var(--action-color-hover);
+    }
+}
+
+.form_icon {
+    position: absolute;
+    top: 22px;
+    color: var(--action-color-hover);
+}
+
+.form_field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--action-color-hover), var(--action-color));
+    border-image-slice: 1;
+
+    &::placeholder {
+        opacity: 0;
+    }
+}
+
+.form_field {
+
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+}
+
+.select-form {
+    height: 40px;
+    min-width: 75px;
+    padding: 5px;
+    border: none;
+    font-weight: 600;
+    color: var(--action-color-hover);
+    background-color: var(--app-bg);
+    &:focus, &:active {
+        border: none;
+        outline: none;
+    }
+}
+
+.list-item {
+    height: 20px;
+    &:hover {
+        background-color: var(--sidebar-hover-link);
+    }
+}

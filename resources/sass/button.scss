@@ -1,0 +1,77 @@
+.dashboard-btn {
+    min-width: 100px;
+    height: 35px;
+    padding: 10px 25px;
+    border: none;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.register {
+    background: var(--action-color);
+    color: #fff;
+    z-index: 1;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        background: #e0e5ec;
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        color: var(--action-color-hover);
+    }
+
+    &:hover:after {
+        left: 0;
+        width: 100%;
+    }
+
+    &:active {
+        top: 2px;
+    }
+}
+
+.delete-btn {
+    background-color: $contrastColorRed;
+    color: #fff;
+    z-index: 1;
+
+    &:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        background: #e0e5ec;
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        color: $contrastColorRed;
+    }
+
+    &:hover:after {
+        left: 0;
+        width: 100%;
+    }
+
+    &:active {
+        top: 2px;
+    }
+}
