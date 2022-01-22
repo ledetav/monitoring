@@ -684,6 +684,23 @@ p {
   font-size: 14px;
 }
 
+.profile-list {
+  list-style-type: none;
+}
+.profile-list .name {
+  font-weight: 700;
+}
+.profile-list-item {
+  display: flex;
+  margin: 5px;
+}
+.profile-list-item .item {
+  text-align: center;
+  color: var(--action-color);
+  font-weight: 500;
+  padding-left: 10px;
+}
+
 .window_home {
   display: flex;
   align-items: center;

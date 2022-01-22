@@ -13,12 +13,6 @@
           </router-link>
         </li>
 
-        <li class="sidebar-list-item">
-          <router-link :to="{ path: '/userdashboard/profile' }">
-            <font-awesome-icon icon="fa-solid fa-circle-user fa-xl" />
-            <span>Профиль</span>
-          </router-link>
-        </li>
       </ul>
     </div>
 </template>

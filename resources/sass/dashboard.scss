@@ -709,3 +709,20 @@ p {
     margin-bottom: 15px;
     font-size: 14px;
 }
+
+.profile-list {
+    list-style-type: none;
+    & .name {
+        font-weight: 700;
+    }
+    &-item {
+        display: flex;
+        margin: 5px;
+        & .item {
+            text-align: center;
+            color: var(--action-color);
+            font-weight: 500;
+            padding-left: 10px;
+        }
+    }
+}

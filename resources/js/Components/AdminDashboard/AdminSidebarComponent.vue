@@ -20,12 +20,6 @@
           </router-link>
         </li>
 
-        <li class="sidebar-list-item">
-          <router-link :to="{ path: '/admindashboard/profile' }" v-bind:class="[{ active: isActive }, isExactActive ]">
-            <font-awesome-icon icon="fa-solid fa-circle-user fa-xl" />
-            <span>Профиль</span>
-          </router-link>
-        </li>
       </ul>
     </div>
 </template>

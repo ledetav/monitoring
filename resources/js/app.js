@@ -19,13 +19,10 @@ import RegisterStation from './Components/AdminDashboard/RulesComponents/Registe
 import UpdateUser from './Components/AdminDashboard/RulesComponents/UpdateUserComponent.vue';
 import StationsComponent from './Components/Other/StationsComponent.vue';
 import Uploading from './Components/Other/UploadingDataComponent.vue';
-import ProfileComponent from './Components/Other/Profile/ProfileComponent.vue';
 import AdminContent from './Components/AdminDashboard/AdminContent.vue';
 import Data from './Components/Other/StationDataComponent.vue';
 import MonDay from './Components/Other/DayDataComponent.vue';
 import MonWeek from './Components/Other/WeekDataComponent.vue'
-import DataProfile from './Components/Other/Profile/DataProfile.vue';
-import StationsProfile from './Components/Other/Profile/StationsProfile.vue';
 
 import UserContent from './Components/UserDashboard/UserContent.vue';
 
@@ -51,9 +48,6 @@ Vue.component('mon-day', require('./Components/Other/DayDataComponent.vue').defa
 Vue.component('rules-update', require('./Components/AdminDashboard/RulesComponents/UpdateUserComponent.vue').default);
 Vue.component('rules-station', require('./Components/AdminDashboard/RulesComponents/RegisterStationComponent.vue').default);
 Vue.component('rules-user', require('./Components/AdminDashboard/RulesComponents/RegisterUserComponent.vue').default);
-
-Vue.component('profile-data', require('./Components/Other/Profile/DataProfile.vue').default);
-Vue.component('profile-stations', require('./Components/Other/Profile/StationsProfile.vue').default);
 
 Vue.use(VueRouter);
 
@@ -90,11 +84,6 @@ const router = new VueRouter({
                     component: StationsComponent,
                     name: 'stations',
                 },
-                {
-                    path: 'profile',
-                    component: ProfileComponent,
-                    name: 'profile'
-                },
             ],
         },
         {
@@ -104,11 +93,6 @@ const router = new VueRouter({
                     path: '',
                     component: StationsComponent,
                     name: 'stations',
-                },
-                {
-                    path: 'profile',
-                    component: ProfileComponent,
-                    name: 'profile'
                 },
             ]
         }
@@ -127,7 +111,5 @@ const app = new Vue({
         UpdateUser,
         RegisterUser,
         RegisterStation,
-        DataProfile,
-        StationsProfile
     },
 });
