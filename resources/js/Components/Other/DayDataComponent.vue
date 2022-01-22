@@ -1,16 +1,16 @@
 <script>
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 
 export default {
-  extends: Bar,
+  extends: Line,
   data: () => ({
     chartdata: {
-      labels: ["Январь", "Февраль"],
+      labels: ["2", "4", "6", "8", "10", "12"],
       datasets: [
         {
-          label: "Данные 1",
+          label: "Эффективность",
           backgroundColor: "#f87900",
-          data: [40, 20],
+          data: [40, 20, 88, 23, 14, 30],
         },
       ],
     },

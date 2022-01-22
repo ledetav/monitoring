@@ -3,11 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
-class UserFactory extends Factory
+class StationFactory extends Factory
 {
-    protected $model = User::class;
     /**
      * Define the model's default state.
      *
@@ -16,9 +14,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->name,
-            'password' => $this->faker->password(),
-            'rule' => $this->faker->boolean(),
+            'key' => $this->faker->unique()->randomNumber()
         ];
     }
 }
