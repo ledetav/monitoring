@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Http\Resources\EffectiveResource;
+use App\Models\Effective;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserStoreRequest;
-use Illuminate\Http\Response;
 
-class UserController extends Controller
+class EffectiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::with('stations')->get());
+        return EffectiveResource::collection(Effective::get());
     }
 
     /**
@@ -27,11 +25,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $created_user = User::create($request->validated());
-
-        return new UserResource($created_user);
+        //
     }
 
     /**
@@ -42,7 +38,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return new UserResource(User::with('stations')->findOrFail($id));
+        return new EffectiveResource(Effective::findOrFail($id));
     }
 
     /**
@@ -52,10 +48,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserStoreRequest $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->update($request->validated());
-        return new UserResource($user);
+        //
     }
 
     /**
@@ -64,10 +59,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
+        //
     }
 }

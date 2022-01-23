@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Effective extends Model
 {
     use HasFactory;
+
+    public function measurement() {
+        return $this->hasOne(Measurement::class, 'measurement_id');
+    }
 }
