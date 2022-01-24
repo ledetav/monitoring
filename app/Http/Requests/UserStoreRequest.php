@@ -24,8 +24,17 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:25',
+            'username' => 'required|max:25|unique:users,username',
             'password' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'username.required' => 'Это поле является обязательным.',
+            'username.max' => 'Максимальная длина имени пользователя — 25 символов.',
+            'username.unique' => 'Пользователь с таким именем уже зарегистрирован. ',
+            'password' => 'Это поле является обязательным.',
         ];
     }
 }

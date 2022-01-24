@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StationResource;
-use App\Models\Station;
+use App\Models\Key;
 use Illuminate\Http\Request;
-use App\Http\Requests\StationStoreRequest;
-use \Illuminate\Http\Response;
+use App\Http\Requests\KeyStoreRequest;
+use App\Http\Resources\KeyResource;
+use App\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
-class StationController extends Controller
+class KeyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +20,7 @@ class StationController extends Controller
      */
     public function index()
     {
-        return StationResource::collection(Station::with('users')->get());
+        return KeyResource::collection(Key::class);
     }
 
     /**
@@ -27,11 +29,11 @@ class StationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StationStoreRequest $request)
+    public function store(KeyStoreRequest $request, )
     {
-        $created_station = Station::create($request->validated());
+        $connection = Key::create($request->validated());
 
-        return new StationResource($created_station);
+        return new KeyResource($connection);
     }
 
     /**
@@ -42,7 +44,7 @@ class StationController extends Controller
      */
     public function show($id)
     {
-        return new StationResource(Station::with('users')->findOrFail($id));
+        return new KeyResource(Key::findOrFail($id));
     }
 
     /**
@@ -63,9 +65,10 @@ class StationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Station $station)
+    public function destroy($user_id, $station_id)
     {
-        $station->delete();
+        $user = User::findOrFail($user_id);
+        $user->stations()->detach($station_id);
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

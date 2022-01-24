@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\StationController;
 use App\Http\Controllers\Api\v1\EffectiveController;
+use App\Http\Controllers\Api\v1\KeyController;
 use App\Http\Controllers\Api\v1\MeasurementController;
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::apiResources([
     'stations' => StationController::class,
     'measurements' => MeasurementController::class,
     'effectives' => EffectiveController::class,
+    'keys' => KeyController::class,
 ]);
