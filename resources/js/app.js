@@ -13,6 +13,8 @@ import {
     FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome';
 
+import Vuelidate from 'vuelidate';
+
 import RulesComponent from './Components/AdminDashboard/RulesComponents/RulesComponent.vue';
 import RegisterUser from './Components/AdminDashboard/RulesComponents/RegisterUserComponent.vue';
 import RegisterStation from './Components/AdminDashboard/RulesComponents/RegisterStationComponent.vue';
@@ -50,6 +52,7 @@ Vue.component('rules-station', require('./Components/AdminDashboard/RulesCompone
 Vue.component('rules-user', require('./Components/AdminDashboard/RulesComponents/RegisterUserComponent.vue').default);
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 window.Vue = require('vue');
 
@@ -90,11 +93,10 @@ const router = new VueRouter({
             path: '/userdashboard',
             component: UserContent,
             children: [{
-                    path: '',
-                    component: StationsComponent,
-                    name: 'stations',
-                },
-            ]
+                path: '',
+                component: StationsComponent,
+                name: 'stations',
+            }, ]
         }
     ]
 });

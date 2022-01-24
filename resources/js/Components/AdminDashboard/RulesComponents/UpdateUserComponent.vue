@@ -19,11 +19,12 @@
         <div style="display: flex; justify-content:space-evenly; margin-top: 40px;">
             <div>
                 <p>Выберите пользователя: </p>
-                <select class="select-form" name="user" required>
-                    <option class="list-item" disabled selected>Выберите пользователя</option>
+                <select class="select-form" name="user" required v-model="selectedUser">
+                    <option class="list-item" disabled selected value="">Выберите пользователя</option>
                     <option class="list-item"
-                        v-for="(user, id) in users"
-                        v-bind:key="id"
+                        v-for="user in users"
+                        v-bind:key="user.id"
+                        v-bind:value="user.id"
                     >
                         {{user.name}}
                     </option>
@@ -31,14 +32,14 @@
             </div>
             <div>
                 <p>Выберите права доступа: </p>
-                <select class="select-form" name="user" required>
-                    <option class="list-item" disabled selected>Выберите права </option>
-                    <option class="list-item" value="admin">Администратор</option>
-                    <option class="list-item" value="user">Пользователь</option>
+                <select class="select-form" name="user" required v-model="selectedRule">
+                    <option class="list-item" disabled selected value="">Выберите права </option>
+                    <option class="list-item" value="1">Администратор</option>
+                    <option class="list-item" value="0">Пользователь</option>
                 </select>
             </div>
         </div>
-        <button class="dashboard-btn register" style="top: 40px;">Изменить права пользователя</button>
+        <button class="dashboard-btn register" style="top: 40px;" @submit.prevent="submit">Изменить права пользователя</button>
     </div>
     <hr>
     <h3 class="app-content-largeText">Права на просмотр данных станций</h3>
@@ -56,6 +57,7 @@
                     <option class="list-item"
                         v-for="(user, id) in users"
                         v-bind:key="id"
+                        v-bind:vlue="id"
                     >
                         {{user.name}}
                     </option>
@@ -82,57 +84,41 @@
 export default {
   data: function () {
         return {
-            users: [{
-              id: "1",
-              name: "85937q89",
-              password: "eiofui84",
-              rule: "администратор",
-            }, 
-            {
-              id: "2",
-              name: "85649839",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-            {
-              id: "3",
-              name: "839463yyr",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-            {
-              id: "4",
-              name: "9802374hh",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-          ],
-          stations: [{
-              id: "1",
-              key: "85937q89",
-              created: "22-01-2018",
-              updated: "18-09-2021",
-            }, 
-            {
-              id: "2",
-              key: "85649839",
-              created: "12-08-2018",
-              updated: "16-12-2021",
-            }, 
-            {
-              id: "3",
-              key: "839463yyr",
-              created: "26-03-2019",
-              updated: "23-09-2021",
-            }, 
-            {
-              id: "4",
-              key: "9802374hh",
-              created: "08-06-2020",
-              updated: "13-10-2021",
-            }, 
-          ] 
+            selectedUser: '',
+            selectedRule: '',
+            users: [],
+          stations: []
         }
-    }
+    },
+    methods: {
+        submit(){
+            axios.post('/api/v1/users'+'\/'+this.selectedUser, {
+                rule: this.selectedRule,
+                _method: 'PUT'
+            }).then(function (response) {
+                console.log(response);
+            })
+            .then(response => {
+                this.rule = response.data.data.rule
+            })
+        },
+        
+    },
+    mounted() {
+        axios.get('/api/v1/users')
+            .then(response => {
+                this.users = response.data.data
+        })
+        .catch(error => {
+            console.log(error)
+         })
+        axios.get('/api/v1/stations')
+            .then(response => {
+                this.stations = response.data.data
+         })
+        .catch(error => {
+            console.log(error)
+        })
+    },
 }
 </script>

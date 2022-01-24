@@ -75,6 +75,28 @@ body {
   box-sizing: border-box;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--action-color) var(--app-content-secondary-color);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 18px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--app-content-secondary-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--action-color-hover);
+  border-radius: 4px;
+  border: 2px solid var(--app-content-secondary-color);
+}
+
 body,
 html {
   margin: 0;
@@ -458,9 +480,11 @@ body {
 
 .stations-list {
   width: 100%;
-  max-height: 100%;
+  max-height: 400px;
   overflow: auto;
   padding: 0 4px;
+  scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-width: thin;
 }
 
 .tableView .stations-header {
@@ -468,8 +492,7 @@ body {
   align-items: center;
   border-radius: 4px;
   background-color: var(--app-content-secondary-color);
-  position: -webkit-sticky;
-  position: sticky;
+  position: static;
   top: 0;
 }
 .tableView .stations-row {
@@ -568,99 +591,6 @@ body {
   background-color: #59719d;
 }
 
-.gridView {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -8px;
-}
-@media screen and (max-width: 520px) {
-  .gridView {
-    margin: 0;
-  }
-}
-.gridView .products-header {
-  display: none;
-}
-.gridView .products-row {
-  margin: 8px;
-  width: calc(25% - 16px);
-  background-color: var(--app-content-secondary-color);
-  padding: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: transform 0.2s;
-  position: relative;
-}
-.gridView .products-row:hover {
-  transform: scale(1.01);
-  box-shadow: var(--filter-shadow);
-}
-.gridView .products-row:hover .cell-more-button {
-  display: flex;
-}
-@media screen and (max-width: 1024px) {
-  .gridView .products-row {
-    width: calc(33.3% - 16px);
-  }
-}
-@media screen and (max-width: 820px) {
-  .gridView .products-row {
-    width: calc(50% - 16px);
-  }
-}
-@media screen and (max-width: 520px) {
-  .gridView .products-row {
-    width: 100%;
-    margin: 8px 0;
-  }
-  .gridView .products-row:hover {
-    transform: none;
-  }
-}
-.gridView .products-row .cell-more-button {
-  border: none;
-  padding: 0;
-  border-radius: 4px;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background-color: rgba(16, 24, 39, 0.7);
-  color: #fff;
-  cursor: pointer;
-  display: none;
-}
-.gridView .product-cell {
-  color: var(--app-content-main-color);
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.gridView .product-cell:not(.image) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.gridView .product-cell.image span {
-  font-size: 18px;
-  line-height: 24px;
-}
-.gridView .product-cell img {
-  width: 100%;
-  height: 140px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-.gridView .cell-label {
-  opacity: 0.6;
-}
-
 .paragraf {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -699,6 +629,23 @@ p {
   color: var(--action-color);
   font-weight: 500;
   padding-left: 10px;
+}
+
+.error {
+  background-color: var(--app-content-secondary-color);
+  height: 40px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.loader {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .window_home {
@@ -1007,6 +954,27 @@ form {
   background-color: var(--sidebar-hover-link);
 }
 
+.validate {
+  color: #c73618;
+}
+
+.is-invalid-form {
+  border-bottom: 2px solid #c73618;
+}
+.is-invalid-form::-moz-placeholder {
+  color: #c73618;
+}
+.is-invalid-form:-ms-input-placeholder {
+  color: #c73618;
+}
+.is-invalid-form::placeholder {
+  color: #c73618;
+}
+
+.is-invalid-icon {
+  color: #c73618;
+}
+
 .dashboard-btn {
   min-width: 100px;
   height: 35px;
@@ -1075,4 +1043,55 @@ form {
 }
 .delete-btn:active {
   top: 2px;
+}
+
+.clock-loader {
+  --clock-color: var(--action-color);
+  --clock-width: 4rem;
+  --clock-radius: calc(var(--clock-width) / 2);
+  --clock-minute-length: calc(var(--clock-width) * 0.4);
+  --clock-hour-length: calc(var(--clock-width) * 0.2);
+  --clock-thickness: 0.2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--clock-width);
+  height: var(--clock-width);
+  border: 3px solid var(--clock-color);
+  border-radius: 50%;
+}
+.clock-loader::before, .clock-loader::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--clock-radius) * 0.25);
+  width: var(--clock-thickness);
+  background: var(--clock-color);
+  border-radius: 10px;
+  transform-origin: center calc(100% - var(--clock-thickness) / 2);
+  -webkit-animation: spin infinite linear;
+          animation: spin infinite linear;
+}
+.clock-loader::before {
+  height: var(--clock-minute-length);
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+.clock-loader::after {
+  top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
+  height: var(--clock-hour-length);
+  -webkit-animation-duration: 15s;
+          animation-duration: 15s;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
 }

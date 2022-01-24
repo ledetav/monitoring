@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app-content-header">
-      <h3 class="app-content-largeText">Регистрация станции</h3>
+      <h3 class="app-content-largeText">Регистрация пользователя</h3>
     </div>
   <div class="paragraf">
     <p>Чтобы зарегистрировать нового пользователя системы, нужно создать <span><b>его имя и пароль</b></span>. Имя должно быть уникальным в системе, содержать только буквы латинского алфавита, а так же не быть длинее 25 символов.</p>
@@ -49,6 +49,14 @@
             <span>Удаление из системы</span>
           </div>
         </div>
+        <div class="error" role='alert' v-if="errors">
+            <p>
+              Ошибка загрузки данных!
+            </p>
+        </div>
+        <div class="loader" v-if="loading">
+          <div class="clock-loader"></div>
+        </div>
         <div class="stations-row"  
           v-for="(user, id) in users"
           v-bind:key="id"
@@ -89,32 +97,25 @@
 export default {
   data: function () {
         return {
-            users: [{
-              id: "1",
-              name: "85937q89",
-              password: "eiofui84",
-              rule: "администратор",
-            }, 
-            {
-              id: "2",
-              name: "85649839",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-            {
-              id: "3",
-              name: "839463yyr",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-            {
-              id: "4",
-              name: "9802374hh",
-              password: "eiofui84",
-              rule: "пользователь",
-            }, 
-          ] 
+          users: [
+
+          ],
+          errors: false,
+          loading: true
         }
+    },
+    mounted(){
+      axios.get('/api/v1/users')
+      .then(response => {
+        this.users = response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+        this.errors = true
+      })
+      .finally(() => {
+        this.loading = false
+      })
     }
 }
 </script>

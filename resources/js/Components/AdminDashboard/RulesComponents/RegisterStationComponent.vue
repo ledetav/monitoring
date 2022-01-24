@@ -8,14 +8,23 @@
   </div>
     <form method="POST">
       <div class="form_group">
-        <font-awesome-icon icon="fa-solid fa-key" class="form_icon"/>
+        <font-awesome-icon icon="fa-solid fa-key" class="form_icon" :class="{ 'is-invalid-icon': $v.key.$error }"/>
         <input
           type="input"
           class="form_field form_input"
+          :class="{ 'is-invalid-form': $v.key.$error }"
           placeholder="Ключ станции"
           name="key"
+          v-model.trim="$v.key.$model"
+          @blur="setKey"
           required
+          focus
         />
+        <div class="validate" v-if="!$v.key.required">
+          <p class="validate">
+            Это поле является обязательным!
+          </p>
+        </div>
       </div>
      <button class="dashboard-btn register">Зарегистрировать</button>
     </form>
@@ -32,12 +41,17 @@
           <div class="stations-item created-up">
             <span>Дата появления в системе</span>
           </div>
-          <div class="stations-item updated-up">
-            <span>Дата последнего обновления данных</span>
-          </div>
           <div class="stations-item delete">
             <span>Удаление из системы</span>
           </div>
+        </div>
+        <div class="error" v-if="errors">
+          <p>
+            Ошибка загрузки данных!
+          </p>
+        </div>
+        <div class="loader" v-if="loading">
+          <div class="clock-loader"></div>
         </div>
         <div class="stations-row"  
           v-for="(station, id) in stations"
@@ -53,11 +67,7 @@
           </div>
           <div class="stations-item created-up"> 
             <span class="station-label">Дата появления в системе:</span>
-            {{ station.created }}
-            </div>
-          <div class="stations-item updated-up">
-            <span class="station-label">Дата последнего обновления данных:</span>
-            {{ station.updated }}
+            {{ station.created_at }}
             </div>
           <div class="stations-item delete">
             <button class="dashboard-btn delete-btn">
@@ -70,35 +80,46 @@
   </div>
 </template>
 <script>
+
+import { required } from 'vuelidate/lib/validators';
+
 export default {
   data: function () {
         return {
-            stations: [{
-              id: "1",
-              key: "85937q89",
-              created: "22-01-2018",
-              updated: "18-09-2021",
-            }, 
-            {
-              id: "2",
-              key: "85649839",
-              created: "12-08-2018",
-              updated: "16-12-2021",
-            }, 
-            {
-              id: "3",
-              key: "839463yyr",
-              created: "26-03-2019",
-              updated: "23-09-2021",
-            }, 
-            {
-              id: "4",
-              key: "9802374hh",
-              created: "08-06-2020",
-              updated: "13-10-2021",
-            }, 
-          ] 
+          key: '',
+          stations: [
+
+          ],
+          errors: false,
+          loading: true
         }
+    },
+    methods: {
+      setKey() {
+        this.$v.$touch()
+        if (value === '') return true;
+        if(this.$v.$anyError){
+          return;
+        }
+      },
+    },
+    mounted(){
+      axios.get('/api/v1/stations')
+      .then(response => {
+        this.stations = response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+        this.errors = true
+      })
+      .finally(() => {
+        this.loading = false
+      })
+    },
+    validations: {
+      key: {
+        required
+      }
     }
 }
 </script>

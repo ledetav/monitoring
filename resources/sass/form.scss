@@ -78,3 +78,17 @@ form {
         background-color: var(--sidebar-hover-link);
     }
 }
+
+.validate {
+    color: $contrastColorRed;
+}
+.is-invalid-form {
+    border-bottom: 2px solid $contrastColorRed;
+    &::placeholder {
+        color: $contrastColorRed;
+    }
+}
+
+.is-invalid-icon {
+    color: $contrastColorRed;
+}
