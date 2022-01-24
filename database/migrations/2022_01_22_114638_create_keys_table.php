@@ -15,9 +15,8 @@ class CreateKeysTable extends Migration
     {
         Schema::create('keys', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->constrained();
-            $table->foreignId('station_id')->constrained();
-            $table->boolean('access')->default(0);
+            $table->integer('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('station_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateMeasurementsTable extends Migration
     {
         Schema::create('measurements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('station_id')->constrained();
+            $table->foreignId('station_id')->constrained()->onDelete('cascade');
             $table->string('time_start');
             $table->string('time_end');
             $table->float('reactive_powerA');

@@ -15,8 +15,8 @@ class CreateEffectivesTable extends Migration
     {
         Schema::create('effectives', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('station_id')->constrained();
-            $table->foreignId('measurement_id')->constrained();
+            $table->foreignId('station_id')->constrained()->onDelete('cascade');
+            $table->foreignId('measurement_id')->constrained()->onDelete('cascade');
             $table->float('effective_power_on');
             $table->float('effective_power_off');
             $table->float('effective');

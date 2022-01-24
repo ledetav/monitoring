@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Key extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'station_id',
+    ];
 }

@@ -10,9 +10,9 @@ class User extends Model
     use HasFactory;
 
     protected $fillable = [
+        'username',
         'name',
-        'rule',
-        'password',
+        'password'
     ];
 
     public function stations() {

@@ -15,8 +15,7 @@ class KeyFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
-            'station_id' => $this->faker->numberBetween(1, 15),
-            'access' => $this->faker->boolean(),
+            'station_id' => $this->faker->numberBetween(1, 15)
         ];
     }
 }
