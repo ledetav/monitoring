@@ -96,7 +96,7 @@ const router = new VueRouter({
                 path: '',
                 component: StationsComponent,
                 name: 'stations',
-            }, ]
+            }, ] 
         }
     ]
 });

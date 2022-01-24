@@ -6,9 +6,8 @@
     <div class="paragraf">
       <p>
         Чтобы зарегистрировать нового пользователя системы, нужно создать
-        <span><b>его имя и пароль</b></span
-        >. Имя должно быть уникальным в системе, содержать только буквы
-        латинского алфавита, а так же не быть длинее 25 символов.
+        <span><b>его имя, EMAIL и пароль</b></span
+        >. EMAIL должен быть уникальным в системе.
       </p>
     </div>
     <form @submit.prevent="setUser">
@@ -18,7 +17,18 @@
           type="input"
           class="form_field form_input"
           placeholder="Имя пользователя"
-          v-model="username"
+          v-model="name"
+          name="login"
+          required
+        />
+      </div>
+       <div class="form_group">
+        <font-awesome-icon icon="fa-solid fa-user" class="form_icon" />
+        <input
+          type="email"
+          class="form_field form_input"
+          placeholder="EMAIL пользователя"
+          v-model="email"
           name="login"
           required
         />
@@ -52,6 +62,9 @@
           <span>Имя в системе</span>
         </div>
         <div class="stations-item pass">
+          <span>EMAIL</span>
+        </div>
+        <div class="stations-item pass">
           <span>Пароль</span>
         </div>
         <div class="stations-item delete">
@@ -68,7 +81,11 @@
         </div>
         <div class="stations-item name">
           <span class="station-label">Имя в системе:</span>
-          {{ user.username }}
+          {{ user.name }}
+        </div>
+        <div class="stations-item name">
+          <span class="station-label">Имя в системе:</span>
+          {{ user.email }}
         </div>
         <div class="stations-item pass">
           <span class="station-label">Пароль:</span>
@@ -94,7 +111,8 @@
 export default {
   data: function () {
     return {
-      username: "",
+      name: "",
+      email: "",
       password: "",
       users: [],
       errors: [],
@@ -123,11 +141,13 @@ export default {
     setUser(){
       axios
         .post("/api/v1/users", {
-          username: this.username,
+          name: this.name,
+          email: this.email,
           password: this.password
         })
         .then((response) => {
           this.username = "",
+          this.email = "",
           this.password = "",
           (this.users = []), this.getAllUsers();
         })

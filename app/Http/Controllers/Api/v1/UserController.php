@@ -31,7 +31,8 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         $created_user = User::create($request->validated());
-
+        $created_user->assignRole('user');
+        
         return new UserResource($created_user);
     }
 

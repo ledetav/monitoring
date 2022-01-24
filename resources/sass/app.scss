@@ -1,13 +1,11 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
 @import 'variables';
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body {
-	color: $bgMain;
-}
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 @import 'dashboard';
 @import 'home';
